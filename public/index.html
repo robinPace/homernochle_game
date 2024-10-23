@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homernochle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-title-container">
+            <h1>'Homer'-nochle</h1>
+        </div>
+        
+        <div class="display-trump">
+            <p id="trumpText"> <b>TRUMP:</b></p>
+            <div id="trumpImg"></div>
+            <p id="bidText"> <b>Final Bid:</b></p>
+        </div>
+        <div class="header-round-info-container">
+            <div class="score-container">
+                <h3 class="score1">Our Score<br><span class="badge">0</span></h3>
+            </div>
+            <div class="score-container">
+                <h3 class="score2">Their Score<br><span class="badge">0</span></h3>
+            </div>
+        </div>
+        <div class="header-status-info-container">
+            <p class="current-status">
+                Join or Create a Game Room!
+            </p>
+            <p class="current-status-mini">
+            </p>
+        </div>
+        <!-- username input -->
+        <div class="usernameDiv">
+            <form id="usernameForm">
+                <div>
+                    <input id="usernameInput" type="text" placeholder="Username"/>
+                </div>
+                <div id="tempPlayButtonDiv">
+                    <button id="playGame">
+                        Enter and Play!
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- username input end -->
+        <!-- Game Code Input -->
+        <div class="passwordDiv">
+            <div>
+                <input id="passwordInput" type="text" placeholder="Game Password"/>
+            </div>
+            <div id="passButtonsDiv">
+                <button id="newRoom" class="passButt" onclick="newRoom()"> New Room </button>
+                <button id="joinRoom" class="passButt" onclick="joinRoom()"> Join Room </button>
+            </div>
+        </div>
+        <!-- Game Input end-->
+        <div class="instructions">
+            <h3> Goal </h3>
+            <p> 
+                The aim of the game is to reach 1000 points before the other team, by
+                taking bids, melding with your partner, and taking tricks.
+            </p>
+            <h3> Card Rankings </h3>
+            <ul>
+                <li> Ace - Highest Ranking, and is worth a point when taking tricks</li>
+                <li> Ten - Second Highest, and is worth a point when taking tricks</li>
+                <li> King - Third Highest, and is worth a point when taking tricks</li>
+                <li> Queen - Fourth Highest, and is not worth a point when taking tricks</li>
+                <li> Jack - Last, and is not worth a point when taking tricks</li>
+            </ul>
+            <h3> The Play </h3>
+            <p>
+                Players will take turns bidding starting at 150. Whoever takes the bid
+                will select a trump suit, a suit that will for that round, be worth more.
+                They will then have their partner pass them up to 10 cards in attempt to 
+                meld their hands together and get as many points as possible. They must
+                send cards back, so everyone ends with 20 cards.
+                Once cards have been exchanged, players will then go around 'taking tricks'.
+                Initially starting with the bid winner, each player will go around, trying
+                to secure their points or push them to reach their bid amount. Aces, Tens,
+                and Kings are the only cards worth points. This will keep going until
+                all players are out of cards
+            </p>
+        </div>
+         
+        <div id="replayButtonDiv">
+            <button id="playNewGame" class = "playAgainButtons" onclick="playAgain()"> Yes </button>
+            <button id="noNewGame" class = "playAgainButtons" onclick="dontPlayAgain()"> No </button>
+        </div>
+        <div class="center-cards-display">
+            <div id="top" class="cardStorage"> 
+            </div>
+            <div id="center" class="cardStorage"> 
+            </div>
+            <div id="bottom" class="cardStorage">
+            
+            </div>
+        </div>
+
+        <div class="lists-container">
+            <div class="score-layout">
+            </div>
+            <div class="player-layout">
+            </div>
+        </div>
+
+        <div id="options">
+            <button onclick="toggleDropdown()" class="optionsBtn">Options</button>
+            <div id="optionsMenu" class="options-menu">
+                <h1> OPTIONS </h1>
+                <!-- CARDS -->
+                <div id="card-options" class="inner-options"> 
+                    <h3> CARDS </h3>
+                    <button id="reverse" onclick="switchSort(true)"> Reverse Hand Order </button>
+                    <!-- Custom Card Order -->
+                    <div id="card-order">
+                        <div id="clubsCard" class="inner-card-order"></div>
+                        <div id="diamondCard" class="inner-card-order"></div>
+                        <div id="spadesCard" class="inner-card-order"></div>
+                        <div id="heartCard" class="inner-card-order"></div>
+                    </div>
+                    <input type="checkbox" id="altRedBlack" name="toggleAlt" value="true" onclick="readCheckBox()" checked>
+                    <label for="toggleAlt"> Always Alternate Red/Black </label>
+                </div>
+                <div id="music-options" class="inner-options">
+                    <h3> MUSIC </h3>
+                </div>
+            </div>
+        </div>
+        
+        <button id = "sendCards" onclick="sendCards()"> Send Cards </button>
+
+        <div class="playOutButtons">
+            <button class="playOut" id="yesPlayOut" onclick="readyUp()"> Ready </button>
+            <button class="playOut" id="noPlayOut" onclick="endRoundEarly()"> No </button>
+        </div>
+        
+        <div class="bid-container">
+            <p id="bidInfo"> </p>
+            <input id="bidInput" type="text" placeholder="Enter a number"> 
+            <div id="bidButtons">
+                <button class="bidButton" id="passBid" onclick="passBid()"> Pass </button>
+                <button class="bidButton" id="submitBid" onclick="sendBid()"> Enter </button>
+            </div>
+            
+        </div>
+
+        <div class="header-button-container">
+            <div class="select-trump">
+                <p> <b>Select Trump</b> </p>
+                <button id="Clubs" class="trump-button" onclick="setTrump('Clubs')">  </button>
+                <button id="Diamond" class="trump-button" onclick="setTrump('Diamond')">  </button>
+                <button id="Spades" class="trump-button" onclick="setTrump('Spades')">  </button>
+                <button id="Heart" class="trump-button" onclick="setTrump('Heart')">  </button>
+                <button id="Enter" onclick="enterTrump()"> Enter</button>
+            </div>
+        </div>
+        <!-- 
+        <div id = "temp">
+            <button class="tempButtons" onclick = "takeBid()"> Take Bid </button>
+            <button class="tempButtons" onclick = "giveBid()"> Give Bid </button>
+        </div>-->
+    </header>
+    <main>
+        <div id="card-container">
+            
+        </div>
+    </main>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <script src="index.js"></script>
+    <script></script>
+    
+</body>
+</html>

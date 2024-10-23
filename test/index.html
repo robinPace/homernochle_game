@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homernochle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-title-container">
+            <h1>'Homer'-nochle</h1>
+        </div>
+        
+        <div class="display-trump">
+            <p id="trumpText"> <b>TRUMP IS</b></p>
+            <div id="trumpImg"></div>
+        </div>
+        <div class="header-round-info-container">
+            <div class="score-container">
+                <h2 class="score1">Team 1<br><span class="badge">10000</span></h2>
+            </div>
+            <button id="reverse" onclick="switchSort()"> <b>Reverse Order</b> </button>
+            <div class="score-container">
+                <h2 class="score2">Team 2<br><span class="badge">0</span></h2>
+            </div>
+        </div>
+        <div class="header-status-info-container">
+            <p class="current-status">
+                Please enter a name before starting
+            </p>
+            <p class="current-status-mini">
+            </p>
+        </div>
+        <!-- username input -->
+        <div class="usernameDiv">
+            <form id="usernameForm">
+                <div>
+                    <input id="usernameInput" type="text" placeholder="Username"/>
+                </div>
+                <div id="tempPlayButtonDiv">
+                    <button id="playGame">
+                        Enter and Play!
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- username input end -->
+
+        <div class="lists-container">
+            <div class="score-layout">
+            </div>
+            <div class="player-layout">
+            </div>
+        </div>
+        
+        <div class="bid-container">
+            <p id="bidInfo"> </p>
+            <input id="bidInput" type="text" placeholder="Enter a number"> 
+            <div id="bidButtons">
+                <button class="bidButton" id="submitBid" onclick="sendBid()"> Enter </button>
+                <button class="bidButton" id="passBid" onclick="passBid()"> Pass </button>
+            </div>
+            
+        </div>
+
+        <div class="header-button-container">
+            <div class="select-trump">
+                <p> <b>Select Trump</b> </p>
+                <button id="Clubs" class="trump-button" onclick="setTrump('Clubs')">  </button>
+                <button id="Diamond" class="trump-button" onclick="setTrump('Diamond')">  </button>
+                <button id="Spades" class="trump-button" onclick="setTrump('Spades')">  </button>
+                <button id="Heart" class="trump-button" onclick="setTrump('Heart')">  </button>
+                <button id="Enter" onclick="enterTrump()"> Enter</button>
+            </div>
+        </div>
+        <!-- 
+        <div id = "temp">
+            <button class="tempButtons" onclick = "takeBid()"> Take Bid </button>
+            <button class="tempButtons" onclick = "giveBid()"> Give Bid </button>
+        </div>-->
+    </header>
+    <main>
+        <button id = "sendCards" onclick="sendCards()"> Send Cards </button>
+        <div id="card-container">
+            
+        </div>
+    </main>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    
+</body>
+</html>
